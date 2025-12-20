@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: authentik
+  namespace: authentik
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: authentik
+  template:
+    metadata:
+      labels:
+        app: authentik
+    spec:
+      containers:
+        - name: authentik
+          image: ghcr.io/goauthentik/server:latest
+          env:
+            - name: AUTHENTIK_SECRET_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: authentik-secrets
+                  key: AUTHENTIK_SECRET_KEY
+            - name: AUTHENTIK_POSTGRESQL__HOST
+              value: postgres
+            - name: AUTHENTIK_REDIS__HOST
+              value: redis
