@@ -22,7 +22,22 @@ spec:
                 secretKeyRef:
                   name: authentik-secrets
                   key: AUTHENTIK_SECRET_KEY
+
             - name: AUTHENTIK_POSTGRESQL__HOST
               value: postgres
+
+            - name: AUTHENTIK_POSTGRESQL__USER
+              value: authentik
+
+            - name: AUTHENTIK_POSTGRESQL__NAME
+              value: authentik
+
+            - name: AUTHENTIK_POSTGRESQL__PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: authentik-secrets
+                  key: POSTGRES_PASSWORD
+
             - name: AUTHENTIK_REDIS__HOST
               value: redis
+
