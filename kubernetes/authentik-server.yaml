@@ -1,21 +1,24 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: authentik
-  namespace: authentik
+  name: authentik-server
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: authentik
+      app: authentik-server
   template:
     metadata:
       labels:
-        app: authentik
+        app: authentik-server
     spec:
       containers:
         - name: authentik
-          image: ghcr.io/goauthentik/server:latest
+          image: ghcr.io/goauthentik/server:2025.2.4
+          command: ["ak"]
+          args: ["server"]
+          ports:
+            - containerPort: 9000
           env:
             - name: AUTHENTIK_SECRET_KEY
               valueFrom:
@@ -25,19 +28,15 @@ spec:
 
             - name: AUTHENTIK_POSTGRESQL__HOST
               value: postgres
-
             - name: AUTHENTIK_POSTGRESQL__USER
               value: authentik
-
-            - name: AUTHENTIK_POSTGRESQL__NAME
-              value: authentik
-
             - name: AUTHENTIK_POSTGRESQL__PASSWORD
               valueFrom:
                 secretKeyRef:
                   name: authentik-secrets
                   key: POSTGRES_PASSWORD
+            - name: AUTHENTIK_POSTGRESQL__NAME
+              value: authentik
 
             - name: AUTHENTIK_REDIS__HOST
               value: redis
-
