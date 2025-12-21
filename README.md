@@ -1,6 +1,6 @@
 # Task‑2: Deploy Authentik on AWS EKS using Terraform
 
-This document provides **end‑to‑end, from‑scratch documentation** to provision an **AWS EKS (Managed Kubernetes) cluster using Terraform** and deploy the **Authentik identity platform** on top of it with:
+This document provides **end‑to‑end, documentation** to provision an **AWS EKS (Managed Kubernetes) cluster using Terraform** and deploy the **Authentik identity platform** on top of it with:
 
 * Separate pods for **Authentik Server**, **Authentik Worker**, **PostgreSQL**, and **Redis**
 * **Persistent storage** for PostgreSQL using EBS
@@ -19,11 +19,11 @@ Local / EC2 Ubuntu VM
         ▼
 AWS EKS Cluster (us‑east‑1)
         │
-        ├─ Authentik Server (Web UI)
-        ├─ Authentik Worker (Background Jobs)
-        ├─ PostgreSQL (Persistent DB on EBS)
-        ├─ Redis (Cache / Queue)
-        └─ CronJob (PostgreSQL Backups)
+        ├─ Authentik Server
+        ├─ Authentik Worker
+        ├─ PostgreSQL
+        ├─ Redis
+        └─ CronJob
 ```
 
 ---
