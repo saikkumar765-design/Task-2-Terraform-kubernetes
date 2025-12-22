@@ -23,7 +23,7 @@ postgresql:
   enabled: true
   auth:
     username: authentik
-    password: authentikpassword
+    password: Authentik@123
     database: authentik
   primary:
     persistence:
